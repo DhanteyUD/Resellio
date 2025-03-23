@@ -6,7 +6,7 @@ const HomeScreen = () => {
   return (
     <ImageBackground source={greyBG} resizeMode="cover" className="flex-1 pt-12 pb-5 px-5">
       <View className="flex flex-1">
-        <Text className="text-white text-[35px]">Home</Text>
+        <Text className="text-white text-[35px]">Resellio</Text>
       </View>
     </ImageBackground>
   );
