@@ -10,6 +10,7 @@ import {
   StyleSheet,
 } from "react-native";
 import { remapProps } from "nativewind";
+import { BlurView } from "expo-blur";
 
 import { MENU_ITEMS } from "@/constants/MenuItems";
 import MENU_IMAGES from "@/constants/MenuImages";
@@ -52,19 +53,20 @@ export default function MenuScreen() {
           <Text className="mx-auto dark:text-light text-dark ">No items</Text>
         }
         renderItem={({ item }) => (
-          <View className="flex-row w-full max-w-[600px] h-[100px] mx-auto mb-[10px] border dark:border-light border-dark rounded-[20px] overflow-hidden">
-            <View className="w-[65%] pt-[10px] pl-[10px] pr-[5px] flex-grow">
-              <Text className="dark:text-light text-dark text-[20px] underline font-[600]">
-                {item?.title}
-              </Text>
-              <Text className="dark:text-light text-dark">
-                {item?.description}
-              </Text>
-            </View>
+          <View className="relative flex-row w-full max-w-[600px] h-[200px] mx-auto mb-[10px] border dark:border-light border-dark rounded-[15px] overflow-hidden">
             <Image
               source={MENU_IMAGES[item.id - 1]}
-              className="h-[100px] w-[100px]"
+              className="h-full w-full"
             />
+
+            <View className="absolute bottom-[15px] left-[15px] w-[55%] rounded-[10px] overflow-hidden">
+              <BlurView intensity={120} tint="dark" className="p-[10px]">
+                <Text className="text-light text-[20px] font-[600]">
+                  {item?.title}
+                </Text>
+                <Text className="text-light">{item?.description}</Text>
+              </BlurView>
+            </View>
           </View>
         )}
       />

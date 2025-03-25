@@ -9,11 +9,11 @@ import macBook from "@/assets/images/menu/macBook.jpeg";
 
 export default [
   airpods,
-  appleTV,
   appleWatch,
-  homepod,
-  imac,
-  ipad,
-  iphone,
   macBook,
+  iphone,
+  ipad,
+  imac,
+  appleTV,
+  homepod,
 ];
