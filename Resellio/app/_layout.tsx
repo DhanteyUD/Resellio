@@ -8,8 +8,8 @@ import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
-import "../global.css";
 import "react-native-reanimated";
+import "../global.css";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
 
@@ -18,6 +18,8 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
+  const isDark = colorScheme === "dark";
+
   const [loaded] = useFonts({
     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
   });
@@ -33,17 +35,31 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+    <ThemeProvider value={isDark ? DarkTheme : DefaultTheme}>
       <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        {/* <Stack.Screen name="(products)" options={{ headerShown: false }} /> */}
-        {/* <Stack.Screen
+        <Stack.Screen
           name="index"
           options={{ title: "Home", headerShown: false }}
         />
-        <Stack.Screen name="contact" options={{ title: "Contact Us" }} /> */}
-        <Stack.Screen name="+not-found" />
+        <Stack.Screen
+          name="menu"
+          options={{
+            title: "Menu",
+            headerShown: true,
+            headerTitle: "Resell your items",
+          }}
+        />
+        <Stack.Screen
+          name="contact"
+          options={{
+            title: "Contact",
+            headerShown: true,
+            headerTitle: "Contact Us",
+          }}
+        />
+        <Stack.Screen name="+not-found" options={{ headerShown: false }} />
       </Stack>
+
       <StatusBar style="auto" />
     </ThemeProvider>
   );
