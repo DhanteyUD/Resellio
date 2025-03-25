@@ -50,6 +50,12 @@ export default function RootLayout() {
           }}
         />
         <Stack.Screen
+          name="menu/[id]"
+          options={{
+            headerShown: true,
+          }}
+        />
+        <Stack.Screen
           name="contact"
           options={{
             title: "Contact",

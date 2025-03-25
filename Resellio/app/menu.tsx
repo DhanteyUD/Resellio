@@ -8,7 +8,9 @@ import {
   ScrollView,
   FlatList,
   StyleSheet,
+  Pressable,
 } from "react-native";
+import { useRouter } from "expo-router";
 import { remapProps } from "nativewind";
 import { BlurView } from "expo-blur";
 
@@ -22,6 +24,12 @@ remapProps(FlatList, {
 
 export default function MenuScreen() {
   const Container = Platform.OS === "web" ? ScrollView : SafeAreaView;
+  const router = useRouter();
+
+  const handleViewItem = (id: number): void => {
+    router.push(`/menu/${id}`);
+  };
+
   const Separator = () => (
     <View className="h-[1px] dark:bg-light bg-dark w-[50%] max-w-[300px] mx-auto mb-[10px]" />
   );
@@ -53,21 +61,23 @@ export default function MenuScreen() {
           <Text className="mx-auto dark:text-light text-dark ">No items</Text>
         }
         renderItem={({ item }) => (
-          <View className="relative flex-row w-full max-w-[600px] h-[200px] mx-auto mb-[10px] border dark:border-light border-dark rounded-[15px] overflow-hidden">
-            <Image
-              source={MENU_IMAGES[item.id - 1]}
-              className="h-full w-full"
-            />
+          <Pressable onPress={() => handleViewItem(item.id)}>
+            <View className="relative flex-row w-full max-w-[600px] h-[200px] mx-auto mb-[10px] border dark:border-light border-dark rounded-[15px] overflow-hidden">
+              <Image
+                source={MENU_IMAGES[item.id - 1]}
+                className="h-full w-full"
+              />
 
-            <View className="absolute bottom-[15px] left-[15px] w-[55%] rounded-[10px] overflow-hidden">
-              <BlurView intensity={120} tint="dark" className="p-[10px]">
-                <Text className="text-light text-[20px] font-[600]">
-                  {item?.title}
-                </Text>
-                <Text className="text-light">{item?.description}</Text>
-              </BlurView>
+              <View className="absolute bottom-[15px] left-[15px] w-[55%] rounded-[10px] overflow-hidden">
+                <BlurView intensity={120} tint="dark" className="p-[10px]">
+                  <Text className="text-light text-[20px] font-[600]">
+                    {item?.title}
+                  </Text>
+                  <Text className="text-light">{item?.description}</Text>
+                </BlurView>
+              </View>
             </View>
-          </View>
+          </Pressable>
         )}
       />
     </Container>
