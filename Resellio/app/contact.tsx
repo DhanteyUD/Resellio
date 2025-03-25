@@ -30,7 +30,7 @@ export default function Contact() {
       headerImage={<Image source={contactUsImage} className="w-full h-full" />}
     >
       <View className="p-4">
-        <View className="flex-row items-center mb-10">
+        <View className="flex-row items-center mb-16">
           <Icon
             name="business-outline"
             size={24}
@@ -69,7 +69,7 @@ export default function Contact() {
 
         <TouchableOpacity
           onPress={() => handlePhonePress(companyInfo.phone)}
-          className="flex-row items-center mb-10"
+          className="flex-row items-center mb-5"
         >
           <Icon
             name="call-outline"
@@ -82,7 +82,7 @@ export default function Contact() {
 
         <TouchableOpacity
           onPress={() => handleMessagePress(companyInfo.message)}
-          className="flex-row items-center mb-10"
+          className="flex-row items-center mb-5"
         >
           <Icon
             name="chatbubble-outline"
@@ -107,6 +107,18 @@ export default function Contact() {
           />
           <Text className="dark:text-light text-dark">{companyInfo.email}</Text>
         </TouchableOpacity>
+
+        <View className="flex-row items-center mb-10">
+          <Icon
+            name="time-outline"
+            size={24}
+            color="#4B5563"
+            className="mr-5"
+          />
+          <Text className="dark:text-light text-dark">
+            Monday - Friday: 9:00 AM - 5:00 PM
+          </Text>
+        </View>
       </View>
     </ParallaxScrollView>
   );
