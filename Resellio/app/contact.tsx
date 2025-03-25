@@ -1,4 +1,5 @@
 import { View, Text, Image } from "react-native";
+import Icon from "react-native-vector-icons/Ionicons";
 
 import ParallaxScrollView from "@/components/ParallaxScrollView";
 import contactUsImage from "@/assets/images/contact-us.webp";
